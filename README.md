@@ -84,9 +84,9 @@ _cmd_kerberoasting_aes.setPreHook(function (id, cmdline, parsed_json, ...parsed_
 
 Then register it in `addSubCommands`:
 
-​```javascript
+```javascript
 cmd_kerbeus.addSubCommands([_cmd_asreproasting, _cmd_asktgt, _cmd_asktgs, _cmd_changepw, _cmd_dump, _cmd_hash, _cmd_kerberoasting, _cmd_kerberoasting_aes, _cmd_klist, _cmd_ptt, _cmd_describe, _cmd_purge, _cmd_renew, _cmd_s4u, _cmd_cross_s4u, _cmd_tgtdeleg, _cmd_triage]);
-​```
+```
 
 Reload the `.axs` file in AdaptixC2 after saving. The command will appear
 as `kerbeus kerberoasting-aes-fallback` in the beacon context menu.
