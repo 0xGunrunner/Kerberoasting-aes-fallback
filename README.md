@@ -176,6 +176,26 @@ This BOF will trigger `KDC_ERR_ETYPE_NOSUPP` noise on the DC if AES is not suppo
 
 ---
 
+## Legal Disclaimer
+
+This tool is intended for authorized penetration testing and security research only.
+
+Use of this tool against systems you do not own or do not have explicit written
+permission to test is illegal under Vietnamese law, including but not limited to:
+
+- **Luật An toàn thông tin mạng 2015** (Law on Network Information Security,
+  No. 86/2015/QH13) — prohibits unauthorized access to information systems
+- **Bộ luật Hình sự 2015, sửa đổi 2017** (Penal Code, Articles 225–226) —
+  criminalizes unauthorized intrusion into computer networks and destruction
+  of data
+
+This tool is provided for **educational purposes only**. The author assumes no
+liability for misuse. You are solely responsible for ensuring your use complies
+with all applicable local, national, and international laws.
+
+By using this tool you confirm that you have obtained proper authorization from
+the system owner prior to any testing activity.
+
 ## Credits
 
 Based on [Kerbeus-BOF](https://github.com/RalfHacker/Kerbeus-BOF) by RalfHacker.  
